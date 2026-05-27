@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:geoh.app)",
+      "WebSearch",
+      "Bash(npx playwright:*)",
+      "Bash(npm --version)",
+      "Bash(export GEOH_EMAIL=\"admin@example.com\")",
+      "Bash(export GEOH_PASSWORD=\"mypassword\")",
+      "WebFetch(domain:portal.geoh.app)",
+      "Bash(GEOH_EMAIL=\"admin@example.com\" GEOH_PASSWORD=\"mypassword\" node scripts/geoh-mapper.js)",
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(GEOH_EMAIL=\"aghogho\" GEOH_PASSWORD=\"Sarahjames247@\" node scripts/geoh-mapper.js)",
+      "Bash(node scripts/geoh-debug.js)",
+      "Bash(git -C /c/xampp/htdocs/evvsample status)",
+      "Bash(gh auth:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}
