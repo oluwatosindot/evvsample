@@ -8,8 +8,8 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
-    "@evv/db": "workspace:*",
-    "@evv/shared": "workspace:*",
+    "@evv/db": "*",
+    "@evv/shared": "*",
     "hono": "^4.7.0",
     "@hono/node-server": "^1.14.0",
     "@hono/zod-validator": "^0.5.0",
