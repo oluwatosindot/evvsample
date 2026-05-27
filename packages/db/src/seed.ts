@@ -35,6 +35,94 @@ async function seed() {
     },
   }).onConflictDoNothing();
 
+  // 1b. Insert security plugin
+  await db.insert(industryPlugins).values({
+    id: "security",
+    name: "Security / Guarding",
+    terminology: {
+      visit: "Shift",
+      client: "Property",
+      worker: "Guard",
+      trip: "Patrol",
+    },
+    defaultVerificationConfig: {
+      allowedMethods: ["gps", "nfc", "qr"],
+      gpsRadiusMeters: 100,
+      requireSignature: false,
+    },
+    complianceRules: {
+      maxShiftHours: 16,
+      breakRequiredAfterHours: 6,
+      credentialExpiryWarningDays: 30,
+    },
+  }).onConflictDoNothing();
+
+  // 1c. Insert cleaning plugin
+  await db.insert(industryPlugins).values({
+    id: "cleaning",
+    name: "Commercial Cleaning",
+    terminology: {
+      visit: "Job",
+      client: "Property",
+      worker: "Technician",
+      trip: "Route",
+    },
+    defaultVerificationConfig: {
+      allowedMethods: ["gps", "photo"],
+      gpsRadiusMeters: 200,
+      requireSignature: false,
+    },
+    complianceRules: {
+      maxShiftHours: 10,
+      breakRequiredAfterHours: 6,
+      credentialExpiryWarningDays: 60,
+    },
+  }).onConflictDoNothing();
+
+  // 1d. Insert construction plugin
+  await db.insert(industryPlugins).values({
+    id: "construction",
+    name: "Construction",
+    terminology: {
+      visit: "Shift",
+      client: "Job Site",
+      worker: "Worker",
+      trip: "Route",
+    },
+    defaultVerificationConfig: {
+      allowedMethods: ["gps", "photo"],
+      gpsRadiusMeters: 300,
+      requireSignature: false,
+    },
+    complianceRules: {
+      maxShiftHours: 12,
+      breakRequiredAfterHours: 6,
+      credentialExpiryWarningDays: 30,
+    },
+  }).onConflictDoNothing();
+
+  // 1e. Insert delivery/logistics plugin
+  await db.insert(industryPlugins).values({
+    id: "delivery",
+    name: "Delivery / Logistics",
+    terminology: {
+      visit: "Delivery",
+      client: "Customer",
+      worker: "Driver",
+      trip: "Route",
+    },
+    defaultVerificationConfig: {
+      allowedMethods: ["gps", "signature", "photo"],
+      gpsRadiusMeters: 100,
+      requireSignature: true,
+    },
+    complianceRules: {
+      maxShiftHours: 14,
+      breakRequiredAfterHours: 8,
+      credentialExpiryWarningDays: 30,
+    },
+  }).onConflictDoNothing();
+
   // 2. Insert demo tenant
   const [tenant] = await db.insert(tenants).values({
     name: "Demo Healthcare Agency",
