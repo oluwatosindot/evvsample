@@ -5,11 +5,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: path.resolve(__dirname, "../../../.env") });
 import { createDb } from "./index";
 import { tenants, users, industryPlugins, roles } from "./schema";
-import crypto from "crypto";
+import bcrypt from "bcryptjs";
 
-async function hashPasswordSimple(password: string): Promise<string> {
-  const { createHash } = await import("crypto");
-  return createHash("sha256").update(password).digest("hex");
+async function hashPassword(password: string): Promise<string> {
+  return bcrypt.hash(password, 10);
 }
 
 async function seed() {
@@ -182,7 +181,7 @@ async function seed() {
   }
 
   // 4. Insert demo admin user
-  const passwordHash = await hashPasswordSimple("admin123!");
+  const passwordHash = await hashPassword("admin123!");
   await db.insert(users).values({
     tenantId: tenant.id,
     email: "admin@demo.evv",

@@ -21,7 +21,12 @@
       "Bash(git rm:*)",
       "Bash(gh repo:*)",
       "Bash(git push:*)",
-      "Bash(npx:*)"
+      "Bash(npx:*)",
+      "Bash(node:*)",
+      "Bash(node -e \":*)",
+      "Bash(nslookup:*)",
+      "Bash(ping:*)",
+      "Bash(curl -s -X POST http://localhost:3006/api/auth/login -H \"Content-Type: application/json\" -d '{\"\"\"\"email\"\"\"\":\"\"\"\"admin@demo.evv\"\"\"\",\"\"\"\"password\"\"\"\":\"\"\"\"admin123!\"\"\"\"}')"
     ]
   }
 }
